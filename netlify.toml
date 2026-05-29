@@ -2,10 +2,3 @@
   base = "client"
   command = "npm ci && npm run build"
   publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "20"
-  # Do NOT store production secrets here. Set VITE_API_URL in Netlify Site settings.
-
-[plugins]
-  # Add Netlify plugins here if needed
