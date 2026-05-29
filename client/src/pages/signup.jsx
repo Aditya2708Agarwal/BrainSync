@@ -31,6 +31,21 @@ export default function Signup() {
     event.preventDefault()
     setErrorMessage('')
 
+    if (!formData.name.trim()) {
+      setErrorMessage('Full name is required')
+      return
+    }
+
+    if (!formData.email.trim()) {
+      setErrorMessage('Email is required')
+      return
+    }
+
+    if (formData.password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long')
+      return
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match')
       return
@@ -77,11 +92,31 @@ export default function Signup() {
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="password">Password</Label>
-                    <Input name="password" id="password" type="password" required value={formData.password} onChange={handleChange} />
+                    <Input
+                      name="password"
+                      id="password"
+                      type="password"
+                      required
+                      minLength={6}
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Password must be at least 6 characters long.
+                    </p>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="confirmPassword">Confirm password</Label>
                     <Input name="confirmPassword" id="confirmPassword" type="password" required value={formData.confirmPassword} onChange={handleChange} />
+                  </div>
+                  <div className="rounded-lg border border-border bg-muted/40 p-3 text-xs text-muted-foreground">
+                    Please make sure:
+                    <ul className="mt-2 list-disc space-y-1 pl-4">
+                      <li>Your full name is entered</li>
+                      <li>Your email is valid</li>
+                      <li>Your password has at least 6 characters</li>
+                      <li>Your password and confirm password match</li>
+                    </ul>
                   </div>
                   <Button type="submit" className="w-full">{isLoading ? 'Signing up...' : 'Sign up'}</Button>
                   {errorMessage ? <p className="text-sm text-red-500">{errorMessage}</p> : null}
@@ -90,7 +125,7 @@ export default function Signup() {
             </CardContent>
             <CardFooter className="flex-col gap-2">
               <div className="text-sm">
-                Already have an account? <Link to="/login">Log in</Link>
+                Already have an account? <Link to="/login" className="text-primary hover:underline">Log in</Link>
               </div>
             </CardFooter>
           </Card>

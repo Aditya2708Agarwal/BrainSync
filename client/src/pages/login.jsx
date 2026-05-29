@@ -58,11 +58,7 @@ export default function Login() {
               <CardDescription>
                 Enter your email below to login to your account
               </CardDescription>
-              <CardAction>
-                <Link to="/signup">
-                  <Button variant="link">Sign Up</Button>
-                </Link>
-              </CardAction>
+              
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit}>
@@ -105,6 +101,13 @@ export default function Login() {
                 </div>
               </form>
             </CardContent>
+            <CardFooter className="flex-col gap-2">
+              <div className="text-sm">
+                Don't have an account? <Link to="/signup" className="text-primary hover:underline">
+                  Sign up
+                </Link>
+              </div>
+            </CardFooter>
           </Card>
         </div>
       </div>
