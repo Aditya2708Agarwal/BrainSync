@@ -12,6 +12,8 @@ export function DashboardShell({ loading = false, children }) {
       {loading ? (
         <div className="mx-auto flex min-h-screen max-w-7xl items-center px-6 py-20 text-sm text-muted-foreground">
           Loading dashboard…
+
+          Please wait for 20-30 seconds as we are using a free hosting service that may take some time to wake up. If you continue to see this message after a minute, please refresh the page.
         </div>
       ) : (
         <div className="relative z-10">{children}</div>
